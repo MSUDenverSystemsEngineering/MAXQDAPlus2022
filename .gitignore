@@ -1,0 +1,7 @@
+Files/
+SupportFiles/
+*.zip
+
+#Ignores Files directory
+#Ignores SupportFiles directory
+#Ignores .zip files
