@@ -57,7 +57,7 @@ Param (
 
 Try {
 	## Set the script execution policy for this process
-	Try { Set-ExecutionPolicy -ExecutionPolicy 'ByPass' -Scope 'Process' -Force -ErrorAction 'Stop' } Catch {}
+	Try { Set-ExecutionPolicy -ExecutionPolicy 'ByPass' -Scope 'Process' -Force -ErrorAction 'Stop' } Catch { Write-Error "Failed to set the execution policy to Bypass for this process." }
 
 	##*===============================================
 	##* VARIABLE DECLARATION
@@ -141,8 +141,7 @@ Try {
 		}
 
 		## <Perform Installation tasks here>
-
-    	Execute-MSI -Action "Install" -Path "$dirFiles\MAXQDA2022_Setup.msi" -Parameters '/QN REBOOT=reallysuppress'
+		Execute-MSI -Action "Install" -Path "$dirFiles\MAXQDA2022_Setup.msi" -Parameters '/QN REBOOT=reallysuppress'
 
 
 		##*===============================================
@@ -229,8 +228,7 @@ Try {
 
 		## <Perform Post-Repair tasks here>
 
-
-    }
+	}
 	##*===============================================
 	##* END SCRIPT BODY
 	##*===============================================
@@ -249,8 +247,8 @@ Catch {
 # SIG # Begin signature block
 # MIIU9wYJKoZIhvcNAQcCoIIU6DCCFOQCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUYZDgHFXqe0cyIBMrLTcXSBy/
-# 5/igghHXMIIFbzCCBFegAwIBAgIQSPyTtGBVlI02p8mKidaUFjANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUU5CKl8Ra5hANjLlFxz54HpMJ
+# aDagghHXMIIFbzCCBFegAwIBAgIQSPyTtGBVlI02p8mKidaUFjANBgkqhkiG9w0B
 # AQwFADB7MQswCQYDVQQGEwJHQjEbMBkGA1UECAwSR3JlYXRlciBNYW5jaGVzdGVy
 # MRAwDgYDVQQHDAdTYWxmb3JkMRowGAYDVQQKDBFDb21vZG8gQ0EgTGltaXRlZDEh
 # MB8GA1UEAwwYQUFBIENlcnRpZmljYXRlIFNlcnZpY2VzMB4XDTIxMDUyNTAwMDAw
@@ -350,13 +348,13 @@ Catch {
 # ZSBTaWduaW5nIENBIFIzNgIRAKVN33D73PFMVIK48rFyyjEwCQYFKw4DAhoFAKB4
 # MBgGCisGAQQBgjcCAQwxCjAIoAKAAKECgAAwGQYJKoZIhvcNAQkDMQwGCisGAQQB
 # gjcCAQQwHAYKKwYBBAGCNwIBCzEOMAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkE
-# MRYEFJWhtW/rXLXC3CTSH7ATVT6zmRybMA0GCSqGSIb3DQEBAQUABIIBgDxQYQKO
-# jKRPhDGFDHVbg87M0dH6cd51N2R1rZVK7Qdt2znyjsFWvWvggirQYfjd25LhXbFL
-# kEFo4gBn8eozX+tIOFLLh8r7wnrqpw49XO4b4Kk+4NvJp16WTLGZEeozdcIQJi18
-# fRHUJEnan9qjd/CR4xilycY74ezBYVSU5SD3C93v3rsyzZjwCsOzQnzzrmcwoSaM
-# vG6IfYnFtvbzKILFj2plZYJqaFvTBveSsZSc8yuvfttFr1qX/h84iulj1gnLYM3w
-# gPzWmUBBFHPK/sM0CqWY2objZx0Y2DBUFz1tTNBH8eN3P7lmeGQF3LxRNYWMjDK4
-# WfiOq/TzpOGhIuNlPa7hVgZkchssYhHHfCqEGKvc/hN1BC5Aaf0Wguu9Koy/6C5S
-# /UClRWzfV/ocqUINlRfNh0Kqez+/eV1gTtMFzENZFO9E1L/ulSqEMFxFDolBMSY2
-# vqdtX7swO6Vq6205HEDEUaECHMil/DVzZ5rUfKuIo4xSc2R/GmYXinsghw==
+# MRYEFIuHkvbkgLEj4pH7Xu7o79e9Y6PgMA0GCSqGSIb3DQEBAQUABIIBgIvkT0ji
+# a0LxLllGKuCXEv3GAnvBWBUzmDexAXlAbFc2Kp+A2U+49NabiYKMcxfjUVG54Y28
+# xFtOvTNrMkXtwS2mb6PvoLCZsJDJS3eTpKtng8Joz6y9pXRm0jDkTCuIDrZ3LC6b
+# w9suIzcLmtqLCYAFLYyOJkyhS6xu6diTN1z+lXFKURNra4IzecVFZknkO5m0Hgad
+# l0mbLz+TNj1TnUQ50rNvgcw1w9Qa2TdYiFoIQFHAffpxI4UgndVSh7Bf0R6f6lHv
+# 21LXLW6uejse3HpXWgfxkw0gwUIVLRVv0GldMi4ux5ue6Q9LHAP2/t7rrVIn0jrZ
+# tSpcEnkSxYm/oLo5SGOjqqr4s5Ulj4h/juTve8T4+YhqNU0p0WwktYpk1G2q6anZ
+# fupIYFg3YMM/0hM6kuGk83hnnSreNAWg6+hIhyujKaViptqVQW4ILp5dvZq+7guD
+# z2cweeejemfXqhx+CRzJf3IQ/kznpMLqZN98WXoznybPiuhmuJrE5SuuKQ==
 # SIG # End signature block
